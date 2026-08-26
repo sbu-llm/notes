@@ -3,7 +3,6 @@ title: "02 - Attention Mechanism"
 lang: en
 slug: attention
 order: 2
-date: 2026-08-27
 ---
 
 ## Self-Attention
