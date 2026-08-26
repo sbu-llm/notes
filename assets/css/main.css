@@ -170,8 +170,86 @@ body.slide-mode-on main{ padding:0; max-width:none; }
 .slide-counter{ color: var(--muted); font-size: 0.85rem; min-width: 3.5rem; text-align:center; }
 .slide-exit{ margin-inline-start: 1rem; }
 
+/* ========================================================== */
+/*                نسخه موبایل (ریسپانسیو) با پشتیبانی کامل RTL  */
+/* ========================================================== */
 @media (max-width: 800px){
   .layout{ flex-direction: column; }
-  .sidebar{ width:auto; border-bottom: 1px solid var(--border); }
-  main{ padding: 1.5rem 1.2rem; }
+  
+  /* سایدبار در موبایل */
+  .sidebar{ 
+    width: auto; 
+    border-bottom: 1px solid var(--border); 
+    padding: 0.8rem 1rem;
+    direction: ltr; /* پیش‌فرض چپ‌چین */
+  }
+  
+  /* اصلاح راست‌چینی سایدبار در حالت فارسی */
+  html[data-lang="fa"] .sidebar {
+    direction: rtl;
+    text-align: right;
+  }
+  html[data-lang="fa"] .sidebar a {
+    justify-content: flex-start;
+  }
+  html[data-lang="fa"] .sidebar-title {
+    text-align: right;
+  }
+
+  /* محتوای اصلی در موبایل */
+  main{ 
+    padding: 1.5rem 1.2rem; 
+    direction: ltr; /* پیش‌فرض چپ‌چین */
+  }
+  
+  /* اصلاح راست‌چینی محتوای اصلی در حالت فارسی */
+  html[data-lang="fa"] main {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  /* اطمینان از راست‌چینی تک تک المان‌های داخل محتوا در فارسی */
+  html[data-lang="fa"] main * {
+    text-align: right;
+  }
+  /* اما کدها و بلوک‌های pre را استثنا می‌کنیم تا چپ‌چین بمانند */
+  html[data-lang="fa"] main pre,
+  html[data-lang="fa"] main code,
+  html[data-lang="fa"] main pre *,
+  html[data-lang="fa"] main code * {
+    text-align: left;
+    direction: ltr;
+  }
+
+  /* نوار بالایی در موبایل */
+  .topbar {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .topbar .site-name {
+    font-size: 0.85rem;
+    margin-inline-end: auto;
+  }
+  .lang-switch button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  .theme-toggle {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.9rem;
+  }
+  
+  /* تصاویر و جداول در موبایل */
+  main img {
+    max-width: 100%;
+    height: auto;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
