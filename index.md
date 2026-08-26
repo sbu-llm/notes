@@ -3,7 +3,7 @@ layout: default
 title: خانه
 ---
 
-<img class="cover-image" src="{{ '/assets/images/cover.svg' | relative_url }}" alt="LLM Lecture Notes">
+<img class="cover-image" src="{{ '/assets/images/llm_database_desktop_500kb.svg' | relative_url }}" alt="LLM Lecture Notes">
 
 <div class="chrome home-content" data-lang-content="fa" markdown="1">
 
