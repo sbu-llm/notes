@@ -5,7 +5,7 @@ description: "Lecture notes for the LLM course"
 collections:
   notes:
     output: true
-    permalink: /notes/:path/
+    permalink: /:path/
 
 defaults:
   - scope:
