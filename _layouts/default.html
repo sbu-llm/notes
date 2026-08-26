@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" data-lang="fa" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title_fa }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script>
+    (function () {
+      var lang = localStorage.getItem('site-lang') || 'fa';
+      var theme = localStorage.getItem('site-theme');
+      if (!theme) {
+        theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="topbar chrome">
+    <a class="site-name" href="{{ '/' | relative_url }}">
+      <span class="lang-en">{{ site.title }}</span>
+      <span class="lang-fa">{{ site.title_fa }}</span>
+    </a>
+    <div class="lang-switch">
+      <button type="button" data-lang-btn="en">EN</button>
+      <button type="button" data-lang-btn="fa">فا</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-btn aria-label="Toggle dark/light theme">🌙</button>
+  </div>
+
+  <div class="layout">
+    <nav class="sidebar chrome">
+      <h2 class="sidebar-title">
+        <span class="lang-en">Table of Contents</span>
+        <span class="lang-fa">فهرست مطالب</span>
+      </h2>
+      <ul>
+        {% assign sorted_notes = site.notes | sort: 'order' %}
+        {% assign slugs = sorted_notes | map: 'slug' | uniq %}
+        {% for slug in slugs %}
+          {% assign group = sorted_notes | where: 'slug', slug %}
+          {% assign en_note = group | where: 'lang', 'en' | first %}
+          {% assign fa_note = group | where: 'lang', 'fa' | first %}
+          <li class="lang-en">
+            {% if en_note %}
+              <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }}</a>
+            {% elsif fa_note %}
+              <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }} <span class="fallback-tag">FA</span></a>
+            {% endif %}
+          </li>
+          <li class="lang-fa">
+            {% if fa_note %}
+              <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }}</a>
+            {% elsif en_note %}
+              <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }} <span class="fallback-tag">EN</span></a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <main>
+      {{ content }}
+    </main>
+  </div>
+
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/slides.js' | relative_url }}" defer></script>
+</body>
+</html>

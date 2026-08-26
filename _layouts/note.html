@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<div class="note-toolbar chrome">
+  <button type="button" id="slide-mode-btn" class="slide-toggle">
+    <span class="lang-en">🖥️ Slide mode</span>
+    <span class="lang-fa">🖥️ حالت اسلایدی</span>
+  </button>
+</div>
+
+<article dir="{% if page.lang == 'fa' %}rtl{% else %}ltr{% endif %}" lang="{{ page.lang | default: 'en' }}"
+          style="direction: {% if page.lang == 'fa' %}rtl{% else %}ltr{% endif %}; text-align: {% if page.lang == 'fa' %}right{% else %}left{% endif %};">
+  <h1>{{ page.title }}</h1>
+  {% if page.date %}
+  <div class="meta">{{ page.date | date: "%Y-%m-%d" }}</div>
+  {% endif %}
+  <div id="note-content" class="note-content">
+    {{ content }}
+  </div>
+</article>
