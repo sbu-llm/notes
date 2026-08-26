@@ -1,0 +1,27 @@
+title: "LLM Lecture Notes"
+title_fa: "لکچر نوت‌های LLM"
+description: "Lecture notes for the LLM course"
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - README.md
