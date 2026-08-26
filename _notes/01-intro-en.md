@@ -3,7 +3,7 @@ title: "01 - Introduction to LLMs"
 lang: en
 slug: intro
 order: 1
-date: 2026-08-27
+date: 2026-03-27
 ---
 
 
