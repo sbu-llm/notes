@@ -34,3 +34,6 @@ def next_token(prompt):
 
 این یک اسلاید دیگر است
 ---
+<span class="text-red">این متن قرمزه</span>
+<span class="text-blue">این متن آبیه</span>
+---
