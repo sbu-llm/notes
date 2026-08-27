@@ -225,6 +225,38 @@ body.slide-mode-on main{ padding:0; max-width:none; }
 /* ============================================ */
 /* سایدبار در دسکتاپ - همیشه باز                */
 /* ============================================ */
+
+.layout {
+  display: flex;
+  flex: 1;
+}
+
+/* حالت انگلیسی - سایدبار در چپ */
+html[data-lang="en"] .layout {
+  flex-direction: row;
+}
+
+html[data-lang="en"] .sidebar {
+  order: 1;
+}
+
+html[data-lang="en"] main {
+  order: 2;
+}
+
+/* حالت فارسی - سایدبار در راست */
+html[data-lang="fa"] .layout {
+  flex-direction: row;
+}
+
+html[data-lang="fa"] .sidebar {
+  order: 2;
+}
+
+html[data-lang="fa"] main {
+  order: 1;
+}
+
 .sidebar {
   width: 270px;
   flex-shrink: 0;
@@ -232,6 +264,13 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   padding: 1.2rem;
   overflow-y: auto;
   transition: transform 0.3s ease, right 0.3s ease, left 0.3s ease;
+}
+
+main {
+  flex: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
 }
 
 /* دکمه همبرگری - در دسکتاپ مخفی */
@@ -267,8 +306,19 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   }
   
   .layout {
-    flex-direction: column;
+    flex-direction: column !important;
     position: relative;
+  }
+  
+  /* در موبایل ترتیب را به حالت اولیه برمی‌گردانیم */
+  html[data-lang="en"] .sidebar,
+  html[data-lang="fa"] .sidebar {
+    order: unset !important;
+  }
+  
+  html[data-lang="en"] main,
+  html[data-lang="fa"] main {
+    order: unset !important;
   }
   
   /* سایدبار در موبایل - بسته به صورت پیش‌فرض */
@@ -279,14 +329,11 @@ body.slide-mode-on main{ padding:0; max-width:none; }
     width: 280px !important;
     z-index: 1000 !important;
     margin: 0 !important;
-    border-right: 1px solid var(--border);
-    border-left: none;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease !important;
     padding-top: 3.5rem !important;
     background: var(--panel) !important;
     overflow-y: auto !important;
     display: block !important;
+    transition: transform 0.3s ease !important;
   }
   
   /* حالت چپ‌چین (انگلیسی) - سایدبار در چپ */
@@ -365,7 +412,7 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   
   /* محتوای اصلی در موبایل */
   main {
-    padding: 1rem 1.2rem;
+    padding: 1rem 1.2rem !important;
     width: 100%;
     max-width: 100%;
   }
