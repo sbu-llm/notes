@@ -29,3 +29,8 @@ def next_token(prompt):
 ![نمونه عکس](https://placehold.co/800x400?text=Transformer)
 
 می‌توانی از <span class="text-red">متن قرمز</span>، <span class="text-blue">متن آبی</span> یا <span class="hl-yellow">هایلایت زرد</span> هم استفاده کنی.
+
+## <span class="text-purple">عنوان رنگی</span>
+
+این یک اسلاید دیگر است
+---
