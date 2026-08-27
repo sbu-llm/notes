@@ -7,8 +7,10 @@ title: خانه
 
 <div class="chrome home-content" data-lang-content="fa" markdown="1">
 
-### یادداشت‌های درس سیستم‌های خبره
-### (مهندسی مدل‌های زبانی بزرگ)
+### <span class="text-orange">یادداشت‌های درس سیستم‌های خبره</span> 
+### <span class="hl-green">(مهندسی مدل‌های زبانی بزرگ)</span> 
+
+
 نیم‌سال اول ۱۴۰۶-۱۴۰۵، دانشکده ریاضی، دانشگاه شهید بهشتی 
 
 
