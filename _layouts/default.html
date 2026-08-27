@@ -25,9 +25,6 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
   
-  <!-- ============================================ -->
-  <!-- اسکریپت تغییر زبان خودکار با هدایت به نسخه دیگر -->
-  <!-- ============================================ -->
   <script>
     (function () {
       var lang = localStorage.getItem('site-lang') || 'fa';
@@ -110,14 +107,8 @@
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/slides.js' | relative_url }}" defer></script>
   
-  <!-- ============================================ -->
-  <!-- اسکریپت کنترل سایدبار و تغییر زبان خودکار    -->
-  <!-- ============================================ -->
   <script>
     (function() {
-      // ============================================
-      // کنترل سایدبار
-      // ============================================
       var sidebar = document.getElementById('sidebar');
       var toggle = document.getElementById('sidebar-toggle');
       var closeBtn = document.getElementById('sidebar-close');
@@ -170,122 +161,18 @@
       });
       
       // ============================================
-      // تغییر زبان خودکار با هدایت به نسخه دیگر
+      // وقتی زبان تغییر می‌کند، سایدبار را ببندید
       // ============================================
       var langButtons = document.querySelectorAll('[data-lang-btn]');
-      
-      // اطلاعات صفحه فعلی را از DOM استخراج می‌کنیم
-      var currentSlug = '{{ page.slug }}';
-      var currentLang = '{{ page.lang }}';
-      
-      // لیست تمام مقالات را از سایدبار استخراج می‌کنیم
-      var allLinks = document.querySelectorAll('.sidebar a');
-      var slugMap = {};
-      
-      // برای هر لینک در سایدبار، slug و زبان آن را ذخیره می‌کنیم
-      allLinks.forEach(function(link) {
-        var href = link.getAttribute('href');
-        // با استفاده از داده‌های موجود در سایدبار، می‌توانیم زبان را تشخیص دهیم
-        // اما از آنجا که لینک‌ها به صورت دو زبانه در سایدبار هستند،
-        // از روش تشخیص زبان بر اساس کلاس والد استفاده می‌کنیم
-        var parentLi = link.closest('li');
-        if (parentLi) {
-          var langClass = parentLi.className;
-          var lang = langClass.includes('lang-en') ? 'en' : 
-                     langClass.includes('lang-fa') ? 'fa' : null;
-          if (lang) {
-            // استخراج slug از URL
-            var pathParts = href.split('/');
-            var slug = pathParts[pathParts.length - 1].replace('.html', '');
-            if (slug) {
-              var key = slug + '-' + lang;
-              slugMap[key] = href;
-            }
-          }
-        }
-      });
-      
-      // تابع پیدا کردن URL نسخه دیگر
-      function findOtherLanguageUrl(targetLang) {
-        // اگر slug نداریم (صفحه اصلی)، نمی‌توانیم تغییر دهیم
-        if (!currentSlug || currentSlug === '') {
-          return null;
-        }
-        
-        // اگر زبان فعلی با زبان هدف یکی است، تغییری نده
-        if (currentLang === targetLang) {
-          return null;
-        }
-        
-        // جستجو برای نسخه دیگر
-        var key = currentSlug + '-' + targetLang;
-        var url = slugMap[key];
-        
-        if (url) {
-          return url;
-        }
-        
-        // اگر نسخه دیگر وجود نداشت، null برگردان
-        return null;
-      }
-      
       langButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
-          var targetLang = this.getAttribute('data-lang-btn');
-          var currentHtmlLang = document.documentElement.getAttribute('data-lang');
-          
-          // اگر زبان انتخابی با زبان فعلی یکی است، کاری نکن
-          if (targetLang === currentHtmlLang) {
-            return;
-          }
-          
-          // پیدا کردن URL نسخه دیگر
-          var otherUrl = findOtherLanguageUrl(targetLang);
-          
-          if (otherUrl) {
-            // اگر نسخه دیگر وجود دارد، به آن هدایت کن
-            window.location.href = otherUrl;
-          } else {
-            // اگر نسخه دیگر وجود ندارد، فقط زبان را تغییر بده
-            // و در همان صفحه بمان
-            document.documentElement.setAttribute('data-lang', targetLang);
-            localStorage.setItem('site-lang', targetLang);
-            
-            // فعال/غیرفعال کردن دکمه‌های زبان
-            langButtons.forEach(function(b) {
-              b.classList.toggle('active', b.getAttribute('data-lang-btn') === targetLang);
-            });
-            
-            // بستن سایدبار در موبایل
-            if (window.innerWidth <= 800) {
-              closeSidebar();
-            }
-            
-            // رفرش MathJax
-            if (window.MathJax && window.MathJax.typesetPromise) {
-              MathJax.typesetPromise().catch(function(err) {
-                console.warn('MathJax typeset failed:', err);
-              });
-            }
+          if (window.innerWidth <= 800) {
+            setTimeout(closeSidebar, 100);
           }
         });
       });
-      
-      // تنظیم دکمه فعال در ابتدا
-      langButtons.forEach(function(btn) {
-        var lang = btn.getAttribute('data-lang-btn');
-        if (lang === document.documentElement.getAttribute('data-lang')) {
-          btn.classList.add('active');
-        }
-      });
-      
       // ============================================
-      // بستن سایدبار بعد از تغییر زبان (از طریق دکمه‌های سایدبار)
-      // ============================================
-      // قبلاً در رویداد کلیک روی لینک‌های سایدبار این کار را انجام داده‌ایم
-      
     })();
   </script>
-  <!-- ============================================ -->
 </body>
 </html>
