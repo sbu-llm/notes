@@ -22,7 +22,7 @@
         if ((tag === 'h2' || tag === 'hr') && current.length) {
           groups.push(current);
           current = [];
-          if (tag === 'hr') return; // hr just marks a break, don't render it
+          if (tag === 'hr') return;
         }
         current.push(node);
       });
@@ -39,6 +39,22 @@
         s.style.display = idx === i ? 'flex' : 'none';
       });
       if (counterEl) counterEl.textContent = (i + 1) + ' / ' + slideCount;
+      
+      // ============================================
+      // پردازش مجدد فرمول‌های MathJax در اسلاید جدید
+      // ============================================
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        try {
+          // فقط اسلاید فعلی را پردازش کن
+          var currentSlide = slides[i];
+          MathJax.typesetPromise([currentSlide]).catch(function(err) {
+            console.warn('MathJax error:', err);
+          });
+        } catch(e) {
+          console.warn('MathJax typeset failed:', e);
+        }
+      }
+      // ============================================
     }
 
     function enterSlideMode() {
@@ -87,13 +103,32 @@
       exitBtn.addEventListener('click', exitSlideMode);
 
       document.addEventListener('keydown', onKeydown);
+      
+      // ============================================
+      // پردازش فرمول‌های MathJax در اسلاید اول
+      // ============================================
       goTo(0);
+      // یک بار دیگر برای اطمینان از پردازش کامل
+      setTimeout(function() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          MathJax.typesetPromise([container]).catch(function(err) {
+            console.warn('MathJax initial typeset failed:', err);
+          });
+        }
+      }, 100);
+      // ============================================
     }
 
     function onKeydown(e) {
       if (!active) return;
-      if (e.key === 'ArrowRight') goTo(currentIndex + 1);
-      if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        goTo(currentIndex + 1);
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        goTo(currentIndex - 1);
+      }
       if (e.key === 'Escape') exitSlideMode();
     }
 
@@ -106,6 +141,16 @@
       contentEl.innerHTML = originalHTML;
       container = null;
       counterEl = null;
+      
+      // ============================================
+      // پردازش مجدد فرمول‌ها بعد از خروج از حالت اسلاید
+      // ============================================
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise().catch(function(err) {
+          console.warn('MathJax exit typeset failed:', err);
+        });
+      }
+      // ============================================
     }
 
     btn.addEventListener('click', function () {
