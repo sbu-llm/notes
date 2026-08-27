@@ -424,3 +424,316 @@ main {
     width: 85% !important;
   }
 }
+
+
+/* ============================================ */
+/* جستجوی پیشرفته                               */
+/* ============================================ */
+
+.search-container {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0 0.2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-results {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.search-results.active {
+  display: block;
+}
+
+.search-result-item {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: var(--panel);
+  text-decoration: none;
+}
+
+.search-result-title {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.search-result-part {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.search-highlight {
+  background: #fbbf24;
+  color: #1a1c22;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.search-no-result {
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ============================================ */
+/* حالت مطالعه (Reader Mode)                   */
+/* ============================================ */
+
+.reader-mode-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  color: var(--text);
+}
+
+.reader-mode-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.reader-mode-toggle.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* حالت مطالعه - استایل‌های بدنه */
+body.reader-mode .topbar,
+body.reader-mode .sidebar,
+body.reader-mode .sidebar-overlay,
+body.reader-mode .sidebar-toggle {
+  display: none !important;
+}
+
+body.reader-mode .layout {
+  display: block !important;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+body.reader-mode main {
+  padding: 3rem 2rem !important;
+  max-width: 100% !important;
+  font-size: 1.15rem;
+  line-height: 2;
+}
+
+body.reader-mode main h1 {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+body.reader-mode main h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+body.reader-mode .note-toolbar {
+  display: none !important;
+}
+
+body.reader-mode .reader-mode-toggle {
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+body.reader-mode .reader-mode-toggle:hover {
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* ============================================ */
+/* باکس‌های برجسته (Callout/Box)              */
+/* ============================================ */
+
+.callout {
+  margin: 1.2rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border-right: 4px solid;
+  background: var(--panel);
+  position: relative;
+}
+
+.callout-icon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.callout-note {
+  border-right-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.callout-note .callout-title {
+  color: #3b82f6;
+}
+
+.callout-tip {
+  border-right-color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.callout-tip .callout-title {
+  color: #22c55e;
+}
+
+.callout-warning {
+  border-right-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.callout-warning .callout-title {
+  color: #f59e0b;
+}
+
+.callout-danger {
+  border-right-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.callout-danger .callout-title {
+  color: #ef4444;
+}
+
+.callout-info {
+  border-right-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.callout-info .callout-title {
+  color: #8b5cf6;
+}
+
+.callout-success {
+  border-right-color: #06b6d4;
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.callout-success .callout-title {
+  color: #06b6d4;
+}
+
+/* حالت RTL برای باکس‌ها */
+html[data-lang="fa"] .callout {
+  border-right: none;
+  border-left: 4px solid;
+}
+
+html[data-lang="fa"] .callout-note {
+  border-left-color: #3b82f6;
+}
+
+html[data-lang="fa"] .callout-tip {
+  border-left-color: #22c55e;
+}
+
+html[data-lang="fa"] .callout-warning {
+  border-left-color: #f59e0b;
+}
+
+html[data-lang="fa"] .callout-danger {
+  border-left-color: #ef4444;
+}
+
+html[data-lang="fa"] .callout-info {
+  border-left-color: #8b5cf6;
+}
+
+html[data-lang="fa"] .callout-success {
+  border-left-color: #06b6d4;
+}
+
+/* ============================================ */
+/* واکنش‌گرایی برای حالت مطالعه                */
+/* ============================================ */
+
+@media (max-width: 800px) {
+  body.reader-mode main {
+    padding: 1.5rem 1.2rem !important;
+    font-size: 1rem;
+  }
+  
+  body.reader-mode main h1 {
+    font-size: 1.8rem;
+  }
+  
+  body.reader-mode main h2 {
+    font-size: 1.4rem;
+  }
+  
+  .reader-mode-toggle {
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.2rem;
+  }
+}
