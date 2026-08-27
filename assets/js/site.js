@@ -47,5 +47,18 @@
         updateButtons();
       });
     }
+
+    var printBtn = document.getElementById('print-btn');
+    if (printBtn) {
+      printBtn.addEventListener('click', function () {
+        var slideBtn = document.getElementById('slide-mode-btn');
+        if (slideBtn && slideBtn.classList.contains('active')) {
+          slideBtn.click();
+          setTimeout(function () { window.print(); }, 50);
+        } else {
+          window.print();
+        }
+      });
+    }
   });
 })();
