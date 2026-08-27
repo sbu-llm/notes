@@ -7,6 +7,28 @@ collections:
     output: true
     permalink: /notes/:path/
 
+parts:
+  - id: 1
+    title_en: "Part 1: Evolution and Fundamentals of AI"
+    title_fa: "بخش ۱: تحول و مبانی هوش مصنوعی"
+  - id: 2
+    title_en: "Part 2: Infrastructure and Foundations of Language Models"
+    title_fa: "بخش ۲: زیرساخت و مبانی مدل‌های زبانی"
+  - id: 3
+    title_en: "Part 3: Reasoning"
+    title_fa: "بخش ۳: استدلال (Reasoning)"
+  - id: 4
+    title_en: "Part 4: External Knowledge and RAG"
+    title_fa: "بخش ۴: دانش بیرونی و RAG"
+  - id: 5
+    title_en: "Part 5: Fine-tuning and Optimization"
+    title_fa: "بخش ۵: فاین‌تیون و بهینه‌سازی"
+  - id: 6
+    title_en: "Part 6: Agentic AI"
+    title_fa: "بخش ۶: هوش مصنوعی عامل‌محور (Agentic AI)"
+  - id: 7
+    title_en: "Part 7: Supplementary and Advanced Topics"
+    title_fa: "بخش ۷: مباحث تکمیلی و پیشرفته"
 
 defaults:
   - scope:
