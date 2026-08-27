@@ -111,6 +111,32 @@ main{ flex:1; max-width: 820px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
 main h1{ font-size: 1.8rem; margin-top:0; }
 main h2{ border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
 
+/* عکس‌های داخل متن درس، رسپانسیو (حالت عادی، نه اسلایدی) */
+.note-content img,
+.home-content img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+}
+
+/* کلاس‌های رنگی برای متن و تیتر */
+.text-red{ color:#ef4444; }
+.text-blue{ color:#3b82f6; }
+.text-green{ color:#22c55e; }
+.text-yellow{ color:#eab308; }
+.text-purple{ color:#a855f7; }
+.text-orange{ color:#f97316; }
+
+/* هایلایت با پس‌زمینه‌ی رنگی */
+.hl-red{ background:#ef444433; padding:0.1em 0.4em; border-radius:4px; }
+.hl-blue{ background:#3b82f633; padding:0.1em 0.4em; border-radius:4px; }
+.hl-green{ background:#22c55e33; padding:0.1em 0.4em; border-radius:4px; }
+.hl-yellow{ background:#eab30833; padding:0.1em 0.4em; border-radius:4px; }
+.hl-purple{ background:#a855f733; padding:0.1em 0.4em; border-radius:4px; }
+.hl-orange{ background:#f9731633; padding:0.1em 0.4em; border-radius:4px; }
+
 table{ border-collapse: collapse; width:100%; margin: 1em 0; }
 th, td{ border: 1px solid var(--border); padding: 0.5em 0.8em; }
 
@@ -170,86 +196,8 @@ body.slide-mode-on main{ padding:0; max-width:none; }
 .slide-counter{ color: var(--muted); font-size: 0.85rem; min-width: 3.5rem; text-align:center; }
 .slide-exit{ margin-inline-start: 1rem; }
 
-/* ========================================================== */
-/*                نسخه موبایل (ریسپانسیو) با پشتیبانی کامل RTL  */
-/* ========================================================== */
 @media (max-width: 800px){
   .layout{ flex-direction: column; }
-  
-  /* سایدبار در موبایل */
-  .sidebar{ 
-    width: auto; 
-    border-bottom: 1px solid var(--border); 
-    padding: 0.8rem 1rem;
-    direction: ltr; /* پیش‌فرض چپ‌چین */
-  }
-  
-  /* اصلاح راست‌چینی سایدبار در حالت فارسی */
-  html[data-lang="fa"] .sidebar {
-    direction: rtl;
-    text-align: right;
-  }
-  html[data-lang="fa"] .sidebar a {
-    justify-content: flex-start;
-  }
-  html[data-lang="fa"] .sidebar-title {
-    text-align: right;
-  }
-
-  /* محتوای اصلی در موبایل */
-  main{ 
-    padding: 1.5rem 1.2rem; 
-    direction: ltr; /* پیش‌فرض چپ‌چین */
-  }
-  
-  /* اصلاح راست‌چینی محتوای اصلی در حالت فارسی */
-  html[data-lang="fa"] main {
-    direction: rtl;
-    text-align: right;
-  }
-  
-  /* اطمینان از راست‌چینی تک تک المان‌های داخل محتوا در فارسی */
-  html[data-lang="fa"] main * {
-    text-align: right;
-  }
-  /* اما کدها و بلوک‌های pre را استثنا می‌کنیم تا چپ‌چین بمانند */
-  html[data-lang="fa"] main pre,
-  html[data-lang="fa"] main code,
-  html[data-lang="fa"] main pre *,
-  html[data-lang="fa"] main code * {
-    text-align: left;
-    direction: ltr;
-  }
-
-  /* نوار بالایی در موبایل */
-  .topbar {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.3rem;
-    padding: 0.5rem 0.8rem;
-  }
-  .topbar .site-name {
-    font-size: 0.85rem;
-    margin-inline-end: auto;
-  }
-  .lang-switch button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
-  }
-  .theme-toggle {
-    width: 1.8rem;
-    height: 1.8rem;
-    font-size: 0.9rem;
-  }
-  
-  /* تصاویر و جداول در موبایل */
-  main img {
-    max-width: 100%;
-    height: auto;
-  }
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
+  .sidebar{ width:auto; border-bottom: 1px solid var(--border); }
+  main{ padding: 1.5rem 1.2rem; }
 }
