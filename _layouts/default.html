@@ -60,6 +60,15 @@
     <nav class="sidebar chrome" id="sidebar">
       <button type="button" class="sidebar-close" id="sidebar-close">✕</button>
       
+      <!-- ============================================ -->
+      <!-- نوار جستجو در سایدبار                       -->
+      <!-- ============================================ -->
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="جستجو..." class="search-input">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <!-- ============================================ -->
+      
       <h2 class="sidebar-title">
         <span class="lang-en">Table of Contents</span>
         <span class="lang-fa">فهرست مطالب</span>
@@ -99,16 +108,27 @@
         {% endif %}
       {% endfor %}
     </nav>
-    <main>
+    <main id="main-content">
       {{ content }}
     </main>
   </div>
+
+  <!-- ============================================ -->
+  <!-- دکمه حالت مطالعه (Reader Mode)              -->
+  <!-- ============================================ -->
+  <button type="button" id="reader-mode-btn" class="reader-mode-toggle" aria-label="Reader Mode">
+    📖
+  </button>
+  <!-- ============================================ -->
 
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/slides.js' | relative_url }}" defer></script>
   
   <script>
     (function() {
+      // ============================================
+      // کنترل سایدبار
+      // ============================================
       var sidebar = document.getElementById('sidebar');
       var toggle = document.getElementById('sidebar-toggle');
       var closeBtn = document.getElementById('sidebar-close');
@@ -161,17 +181,245 @@
       });
       
       // ============================================
-      // وقتی زبان تغییر می‌کند، سایدبار را ببندید
+      // جستجوی پیشرفته
+      // ============================================
+      var searchInput = document.getElementById('search-input');
+      var searchResults = document.getElementById('search-results');
+      
+      // جمع‌آوری داده‌های همه نوت‌ها از سایدبار
+      var allNotesData = [];
+      var allLinksInSidebar = document.querySelectorAll('.sidebar a');
+      
+      allLinksInSidebar.forEach(function(link) {
+        var href = link.getAttribute('href');
+        var title = link.textContent.trim();
+        var parentLi = link.closest('li');
+        var lang = parentLi ? (parentLi.className.includes('lang-en') ? 'en' : 'fa') : 'fa';
+        var partTitle = link.closest('.part-group') ? 
+                        link.closest('.part-group').querySelector('.part-title') : null;
+        var part = partTitle ? partTitle.textContent.trim() : '';
+        
+        allNotesData.push({
+          url: href,
+          title: title,
+          lang: lang,
+          part: part
+        });
+      });
+      
+      // جستجو
+      function performSearch(query) {
+        query = query.toLowerCase().trim();
+        var results = [];
+        
+        if (query.length < 2) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        
+        allNotesData.forEach(function(item) {
+          var titleMatch = item.title.toLowerCase().includes(query);
+          var partMatch = item.part.toLowerCase().includes(query);
+          
+          if (titleMatch || partMatch) {
+            results.push(item);
+          }
+        });
+        
+        displayResults(results, query);
+      }
+      
+      function displayResults(results, query) {
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div class="search-no-result">' + 
+            (document.documentElement.getAttribute('data-lang') === 'fa' ? 
+              'نتیجه‌ای یافت نشد' : 'No results found') + 
+            '</div>';
+          searchResults.classList.add('active');
+          return;
+        }
+        
+        var html = '';
+        results.forEach(function(item) {
+          // هایلایت کلمه کلیدی
+          var title = item.title;
+          var regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          var highlightedTitle = title.replace(regex, '<span class="search-highlight">$1</span>');
+          
+          html += '<a href="' + item.url + '" class="search-result-item">';
+          html += '<span class="search-result-title">' + highlightedTitle + '</span>';
+          if (item.part) {
+            html += '<span class="search-result-part">' + item.part + '</span>';
+          }
+          html += '</a>';
+        });
+        
+        searchResults.innerHTML = html;
+        searchResults.classList.add('active');
+      }
+      
+      // رویدادهای جستجو
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          performSearch(this.value);
+        });
+        
+        searchInput.addEventListener('focus', function() {
+          if (this.value.length >= 2) {
+            performSearch(this.value);
+          }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+          setTimeout(function() {
+            searchResults.classList.remove('active');
+          }, 200);
+        });
+        
+        // کلید ESC برای بستن نتایج
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            searchResults.classList.remove('active');
+            searchInput.blur();
+          }
+        });
+      }
+      
+      // ============================================
+      // حالت مطالعه (Reader Mode)
+      // ============================================
+      var readerBtn = document.getElementById('reader-mode-btn');
+      var mainContent = document.getElementById('main-content');
+      var isReaderMode = false;
+      
+      if (readerBtn && mainContent) {
+        readerBtn.addEventListener('click', function() {
+          isReaderMode = !isReaderMode;
+          document.body.classList.toggle('reader-mode', isReaderMode);
+          readerBtn.classList.toggle('active', isReaderMode);
+          
+          // تغییر آیکون
+          readerBtn.textContent = isReaderMode ? '✕' : '📖';
+          
+          // ذخیره وضعیت
+          localStorage.setItem('reader-mode', isReaderMode ? 'true' : 'false');
+          
+          // اگر فرمول‌ها وجود دارند، دوباره رندر کن
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            setTimeout(function() {
+              MathJax.typesetPromise().catch(function(err) {
+                console.warn('MathJax typeset failed:', err);
+              });
+            }, 100);
+          }
+        });
+        
+        // بازیابی وضعیت از localStorage
+        var savedReaderMode = localStorage.getItem('reader-mode');
+        if (savedReaderMode === 'true') {
+          isReaderMode = true;
+          document.body.classList.add('reader-mode');
+          readerBtn.classList.add('active');
+          readerBtn.textContent = '✕';
+        }
+      }
+      
+      // ============================================
+      // تغییر زبان با هدایت به نسخه دیگر
       // ============================================
       var langButtons = document.querySelectorAll('[data-lang-btn]');
+      
+      var currentSlug = '{{ page.slug }}';
+      var currentLang = '{{ page.lang }}';
+      var isHomePage = !currentSlug || currentSlug === '' || window.location.pathname === '/' || window.location.pathname === '/index.html';
+      
+      // جمع‌آوری لینک‌های سایدبار برای نقشه slug
+      var allLinks = document.querySelectorAll('.sidebar a');
+      var slugMap = {};
+      
+      allLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        var parentLi = link.closest('li');
+        if (parentLi) {
+          var langClass = parentLi.className;
+          var lang = langClass.includes('lang-en') ? 'en' : 
+                     langClass.includes('lang-fa') ? 'fa' : null;
+          if (lang) {
+            var pathParts = href.split('/');
+            var slug = pathParts[pathParts.length - 1].replace('.html', '');
+            if (slug) {
+              var key = slug + '-' + lang;
+              slugMap[key] = href;
+            }
+          }
+        }
+      });
+      
+      function findOtherLanguageUrl(targetLang) {
+        if (isHomePage) {
+          if (targetLang === 'fa' && window.location.pathname.includes('/en/')) {
+            return '/';
+          } else if (targetLang === 'en' && !window.location.pathname.includes('/en/')) {
+            return '/en/';
+          }
+          return '/';
+        }
+        
+        if (!currentSlug || currentSlug === '') {
+          return null;
+        }
+        
+        if (currentLang === targetLang) {
+          return null;
+        }
+        
+        var key = currentSlug + '-' + targetLang;
+        var url = slugMap[key];
+        return url || null;
+      }
+      
       langButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
-          if (window.innerWidth <= 800) {
-            setTimeout(closeSidebar, 100);
+          var targetLang = this.getAttribute('data-lang-btn');
+          var currentHtmlLang = document.documentElement.getAttribute('data-lang');
+          
+          if (targetLang === currentHtmlLang) {
+            return;
+          }
+          
+          var otherUrl = findOtherLanguageUrl(targetLang);
+          
+          if (otherUrl) {
+            window.location.href = otherUrl;
+          } else {
+            document.documentElement.setAttribute('data-lang', targetLang);
+            localStorage.setItem('site-lang', targetLang);
+            
+            langButtons.forEach(function(b) {
+              b.classList.toggle('active', b.getAttribute('data-lang-btn') === targetLang);
+            });
+            
+            if (window.innerWidth <= 800) {
+              closeSidebar();
+            }
+            
+            if (window.MathJax && window.MathJax.typesetPromise) {
+              MathJax.typesetPromise().catch(function(err) {
+                console.warn('MathJax typeset failed:', err);
+              });
+            }
           }
         });
       });
-      // ============================================
+      
+      // تنظیم دکمه فعال در ابتدا
+      langButtons.forEach(function(btn) {
+        var lang = btn.getAttribute('data-lang-btn');
+        if (lang === document.documentElement.getAttribute('data-lang')) {
+          btn.classList.add('active');
+        }
+      });
+      
     })();
   </script>
 </body>
