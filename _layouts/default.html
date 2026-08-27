@@ -6,7 +6,7 @@
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title_fa }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   
-  <!-- MathJax برای رندرینگ فرمول‌های لاتک -->
+  <!-- MathJax -->
   <script>
     MathJax = {
       tex: {
@@ -39,7 +39,6 @@
 </head>
 <body>
   <div class="topbar chrome">
-    <!-- دکمه همبرگری برای باز کردن سایدبار در موبایل -->
     <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
       ☰
     </button>
@@ -56,11 +55,9 @@
   </div>
 
   <div class="layout">
-    <!-- اوورلی برای بستن سایدبار با کلیک بیرون -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
     
     <nav class="sidebar chrome" id="sidebar">
-      <!-- دکمه بستن در سایدبار (موبایل) -->
       <button type="button" class="sidebar-close" id="sidebar-close">✕</button>
       
       <h2 class="sidebar-title">
@@ -110,9 +107,6 @@
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/slides.js' | relative_url }}" defer></script>
   
-  <!-- ============================================ -->
-  <!-- اسکریپت کنترل سایدبار در موبایل              -->
-  <!-- ============================================ -->
   <script>
     (function() {
       var sidebar = document.getElementById('sidebar');
@@ -151,7 +145,6 @@
         overlay.addEventListener('click', closeSidebar);
       }
       
-      // با کلیک روی لینک‌های سایدبار، آن را ببندید (در موبایل)
       var sidebarLinks = sidebar ? sidebar.querySelectorAll('a') : [];
       sidebarLinks.forEach(function(link) {
         link.addEventListener('click', function() {
@@ -161,7 +154,6 @@
         });
       });
       
-      // با تغییر اندازه صفحه، اگر سایدبار باز بود ببندید
       window.addEventListener('resize', function() {
         if (window.innerWidth > 800 && sidebar.classList.contains('open')) {
           closeSidebar();
@@ -169,6 +161,5 @@
       });
     })();
   </script>
-  <!-- ============================================ -->
 </body>
 </html>
