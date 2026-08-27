@@ -220,38 +220,50 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   .slide{ display:block !important; padding:0; page-break-after: always; }
 }
 
-/* ============================================ */
-/* سایدبار در موبایل - بسته به صورت پیش‌فرض     */
-/* ============================================ */
 
-/* دکمه همبرگری برای باز و بسته کردن سایدبار */
-.sidebar-toggle {
-  display: none;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 1.5rem;
-  padding: 0.3rem 0.8rem;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  line-height: 1;
-}
 
-/* استایل سایدبار */
+
+/* ============================================ */
+/* سایدبار در دسکتاپ - همیشه باز                */
+/* ============================================ */
 .sidebar {
   width: 270px;
   flex-shrink: 0;
   background: var(--panel);
   padding: 1.2rem;
   overflow-y: auto;
-  transition: transform 0.3s ease, margin 0.3s ease;
 }
 
-/* حالت موبایل */
+/* دکمه همبرگری - در دسکتاپ مخفی */
+.sidebar-toggle {
+  display: none !important;
+}
+
+/* اوورلی - در دسکتاپ مخفی */
+.sidebar-overlay {
+  display: none !important;
+}
+
+/* دکمه بستن - در دسکتاپ مخفی */
+.sidebar-close {
+  display: none !important;
+}
+
+/* ============================================ */
+/* حالت موبایل - سایدبار بسته به صورت پیش‌فرض   */
+/* ============================================ */
 @media (max-width: 800px) {
+  /* دکمه همبرگری را نشان بده */
   .sidebar-toggle {
-    display: inline-block;
+    display: inline-block !important;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1.5rem;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    line-height: 1;
   }
   
   .layout {
@@ -259,29 +271,52 @@ body.slide-mode-on main{ padding:0; max-width:none; }
     position: relative;
   }
   
+  /* سایدبار در موبایل - بسته به صورت پیش‌فرض */
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 280px;
-    z-index: 1000;
-    transform: translateX(-110%);
-    margin: 0;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 280px !important;
+    z-index: 1000 !important;
+    transform: translateX(-110%) !important;
+    margin: 0 !important;
     border-right: 1px solid var(--border);
     box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    padding-top: 3.5rem;
+    transition: transform 0.3s ease !important;
+    padding-top: 3.5rem !important;
+    background: var(--panel) !important;
+    overflow-y: auto !important;
+    display: block !important;
   }
   
   /* وقتی سایدبار باز است */
   .sidebar.open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
+  }
+  
+  /* دکمه بستن در سایدبار - در موبایل نشان داده شود */
+  .sidebar-close {
+    display: block !important;
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    z-index: 1001;
+  }
+  
+  .sidebar-close:hover {
+    color: var(--text);
   }
   
   /* اوورلی برای بستن سایدبار با کلیک بیرون */
   .sidebar-overlay {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -292,38 +327,20 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   }
   
   .sidebar-overlay.active {
-    display: block;
+    display: block !important;
   }
   
   /* محتوای اصلی در موبایل */
   main {
     padding: 1rem 1.2rem;
     width: 100%;
-  }
-  
-  /* دکمه بستن در سایدبار */
-  .sidebar-close {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.7rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0.3rem 0.6rem;
-  }
-  
-  .sidebar-close:hover {
-    color: var(--text);
+    max-width: 100%;
   }
 }
 
 /* برای صفحه‌های خیلی کوچک */
 @media (max-width: 480px) {
   .sidebar {
-    width: 85%;
+    width: 85% !important;
   }
 }
-
-/* ============================================ */
