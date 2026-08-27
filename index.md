@@ -36,7 +36,7 @@ To add a new lecture, upload a `.md` file into the `_notes/` folder in GitHub �
 
 
 <!-- ============================================ -->
-<!-- نمایش تاریخ شمسی (ساده)                      -->
+<!-- نمایش تاریخ شمسی با اعداد فارسی              -->
 <!-- ============================================ -->
 <div id="persian-date" style="text-align: center; margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.95rem;">
   <span id="date-display">در حال بارگذاری تاریخ...</span>
@@ -44,7 +44,19 @@ To add a new lecture, upload a `.md` file into the `_notes/` folder in GitHub �
 
 <script>
   (function() {
-    // تابع تبدیل تاریخ میلادی به شمسی (بدون کتابخانه)
+    // ============================================
+    // تابع تبدیل اعداد انگلیسی به فارسی
+    // ============================================
+    function toPersianNumber(num) {
+      var persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return num.toString().replace(/\d/g, function(d) {
+        return persianDigits[parseInt(d)];
+      });
+    }
+    
+    // ============================================
+    // تابع تبدیل تاریخ میلادی به شمسی
+    // ============================================
     function toPersianDate(date) {
       var persianMonths = [
         'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
@@ -74,27 +86,63 @@ To add a new lecture, upload a `.md` file into the `_notes/` folder in GitHub �
       var day = now.getDate();
       
       var jalali = gregorianToJalali(year, month, day);
-      return jalali[0] + ' ' + persianMonths[jalali[1] - 1] + ' ' + jalali[2];
+      return {
+        year: jalali[0],
+        month: jalali[1],
+        day: jalali[2],
+        monthName: persianMonths[jalali[1] - 1]
+      };
     }
     
-    // نمایش تاریخ
-    var dateDisplay = document.getElementById('date-display');
-    if (dateDisplay) {
-      var currentDate = new Date();
-      var persianDate = toPersianDate(currentDate);
+    // ============================================
+    // تابع نمایش تاریخ
+    // ============================================
+    function displayDate() {
+      var dateDisplay = document.getElementById('date-display');
+      if (!dateDisplay) return;
       
-      // تشخیص زبان فعلی
+      var currentDate = new Date();
       var lang = document.documentElement.getAttribute('data-lang') || 'fa';
       
       if (lang === 'fa') {
+        // ===== حالت فارسی با اعداد فارسی =====
+        var persianDate = toPersianDate(currentDate);
         var weekDays = ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
         var dayOfWeek = weekDays[currentDate.getDay()];
-        dateDisplay.textContent = dayOfWeek + ' ' + persianDate;
+        
+        // تبدیل اعداد به فارسی
+        var yearStr = toPersianNumber(persianDate.year);
+        var dayStr = toPersianNumber(persianDate.day);
+        
+        dateDisplay.textContent = dayOfWeek + ' ' + dayStr + ' ' + persianDate.monthName + ' ' + yearStr;
       } else {
-        // نمایش به انگلیسی
+        // ===== حالت انگلیسی =====
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
       }
     }
+    
+    // ============================================
+    // اجرا در شروع و هنگام تغییر زبان
+    // ============================================
+    displayDate();
+    
+    // گوش دادن به تغییرات زبان
+    var observer = new MutationObserver(function() {
+      displayDate();
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-lang']
+    });
+    
+    // همچنین وقتی دکمه‌های زبان کلیک می‌شوند
+    document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        setTimeout(displayDate, 100);
+      });
+    });
+    
   })();
 </script>
