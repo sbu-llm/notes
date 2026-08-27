@@ -66,27 +66,66 @@ src="{{ '/assets/images/cover.svg' | relative_url }}"
 src="{{ '/assets/images/cover.jpg' | relative_url }}"
 ```
 
-## متن یا تیتر رنگی
+<!-- ============================================ -->
+<!-- باکس Note (یادداشت)                         -->
+<!-- ============================================ -->
+<div class="callout callout-note">
+  <div class="callout-title">
+    <span class="callout-icon">📝</span> نکته
+  </div>
+  این یک نکته مهم است که باید به آن توجه کنید.
+</div>
 
-می‌تونی داخل فایل مارک‌داون از این کلاس‌ها استفاده کنی:
+<!-- ============================================ -->
+<!-- باکس Tip (راهنمایی)                        -->
+<!-- ============================================ -->
+<div class="callout callout-tip">
+  <div class="callout-title">
+    <span class="callout-icon">💡</span> راهنمایی
+  </div>
+  این یک راهنمایی مفید برای انجام بهتر کار است.
+</div>
 
-**رنگ متن:**
-```html
-<span class="text-red">این متن قرمزه</span>
-<span class="text-blue">این متن آبیه</span>
-```
-رنگ‌های موجود: `text-red`, `text-blue`, `text-green`, `text-yellow`, `text-purple`, `text-orange`
+<!-- ============================================ -->
+<!-- باکس Warning (هشدار)                      -->
+<!-- ============================================ -->
+<div class="callout callout-warning">
+  <div class="callout-title">
+    <span class="callout-icon">⚠️</span> هشدار
+  </div>
+  لطفاً به این نکته توجه ویژه داشته باشید.
+</div>
 
-**هایلایت با پس‌زمینه:**
-```html
-<span class="hl-yellow">این متن هایلایت‌شده</span>
-```
-هایلایت‌های موجود: `hl-red`, `hl-blue`, `hl-green`, `hl-yellow`, `hl-purple`, `hl-orange`
+<!-- ============================================ -->
+<!-- باکس Danger (خطر)                         -->
+<!-- ============================================ -->
+<div class="callout callout-danger">
+  <div class="callout-title">
+    <span class="callout-icon">🚨</span> خطر
+  </div>
+  این کار ممکن است باعث بروز مشکل شود.
+</div>
 
-**تیتر رنگی:**
-```markdown
-## <span class="text-purple">عنوان رنگی</span>
-```
+<!-- ============================================ -->
+<!-- باکس Info (اطلاعات)                        -->
+<!-- ============================================ -->
+<div class="callout callout-info">
+  <div class="callout-title">
+    <span class="callout-icon">ℹ️</span> اطلاعات
+  </div>
+  اطلاعات تکمیلی درباره این موضوع.
+</div>
+
+<!-- ============================================ -->
+<!-- باکس Success (موفقیت)                     -->
+<!-- ============================================ -->
+<div class="callout callout-success">
+  <div class="callout-title">
+    <span class="callout-icon">✅</span> موفقیت
+  </div>
+  این روش بهترین نتیجه را دارد.
+</div>
+
 
 ## نکات
 
