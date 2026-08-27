@@ -159,6 +159,19 @@
           closeSidebar();
         }
       });
+      
+      // ============================================
+      // وقتی زبان تغییر می‌کند، سایدبار را ببندید
+      // ============================================
+      var langButtons = document.querySelectorAll('[data-lang-btn]');
+      langButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          if (window.innerWidth <= 800) {
+            setTimeout(closeSidebar, 100);
+          }
+        });
+      });
+      // ============================================
     })();
   </script>
 </body>
