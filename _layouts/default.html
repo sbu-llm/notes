@@ -36,29 +36,40 @@
         <span class="lang-en">Table of Contents</span>
         <span class="lang-fa">فهرست مطالب</span>
       </h2>
-      <ul>
-        {% assign sorted_notes = site.notes | sort: 'order' %}
-        {% assign slugs = sorted_notes | map: 'slug' | uniq %}
-        {% for slug in slugs %}
-          {% assign group = sorted_notes | where: 'slug', slug %}
-          {% assign en_note = group | where: 'lang', 'en' | first %}
-          {% assign fa_note = group | where: 'lang', 'fa' | first %}
-          <li class="lang-en">
-            {% if en_note %}
-              <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }}</a>
-            {% elsif fa_note %}
-              <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }} <span class="fallback-tag">FA</span></a>
-            {% endif %}
-          </li>
-          <li class="lang-fa">
-            {% if fa_note %}
-              <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }}</a>
-            {% elsif en_note %}
-              <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }} <span class="fallback-tag">EN</span></a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+      {% assign all_notes = site.notes | sort: 'order' %}
+      {% for part in site.parts %}
+        {% assign part_notes = all_notes | where: 'part', part.id %}
+        {% if part_notes.size > 0 %}
+        <div class="part-group">
+          <div class="part-title chrome">
+            <span class="lang-en">{{ part.title_en }}</span>
+            <span class="lang-fa">{{ part.title_fa }}</span>
+          </div>
+          <ul>
+            {% assign slugs = part_notes | map: 'slug' | uniq %}
+            {% for slug in slugs %}
+              {% assign group = part_notes | where: 'slug', slug %}
+              {% assign en_note = group | where: 'lang', 'en' | first %}
+              {% assign fa_note = group | where: 'lang', 'fa' | first %}
+              <li class="lang-en">
+                {% if en_note %}
+                  <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }}</a>
+                {% elsif fa_note %}
+                  <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }} <span class="fallback-tag">FA</span></a>
+                {% endif %}
+              </li>
+              <li class="lang-fa">
+                {% if fa_note %}
+                  <a href="{{ fa_note.url | relative_url }}" class="{% if page.url == fa_note.url %}active{% endif %}">{{ fa_note.title }}</a>
+                {% elsif en_note %}
+                  <a href="{{ en_note.url | relative_url }}" class="{% if page.url == en_note.url %}active{% endif %}">{{ en_note.title }} <span class="fallback-tag">EN</span></a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      {% endfor %}
     </nav>
     <main>
       {{ content }}
