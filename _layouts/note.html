@@ -19,3 +19,121 @@ layout: default
     {{ content }}
   </div>
 </article>
+
+
+<!-- ============================================ -->
+<!-- اسکریپت تبدیل اعداد به فارسی در نوت‌ها        -->
+<!-- ============================================ -->
+<script>
+  (function() {
+    // ============================================
+    // تابع تبدیل اعداد انگلیسی به فارسی
+    // ============================================
+    function toPersianNumber(num) {
+      var persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return num.toString().replace(/\d/g, function(d) {
+        return persianDigits[parseInt(d)];
+      });
+    }
+    
+    // ============================================
+    // تابع تبدیل همه اعداد در یک المان به فارسی
+    // ============================================
+    function convertNumbersToPersian(element) {
+      // فقط اگر زبان فارسی باشد
+      var lang = document.documentElement.getAttribute('data-lang') || 'fa';
+      if (lang !== 'fa') return;
+      
+      // تمام text nodes را پیدا کن
+      var walker = document.createTreeWalker(
+        element,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode: function(node) {
+            // از المان‌های خاص صرف نظر کن
+            var parent = node.parentElement;
+            if (parent) {
+              var tag = parent.tagName ? parent.tagName.toLowerCase() : '';
+              // از کدها، فرمول‌ها و اسکریپت‌ها صرف نظر کن
+              if (tag === 'code' || tag === 'pre' || tag === 'script' || tag === 'style') {
+                return NodeFilter.FILTER_REJECT;
+              }
+              // از المان‌های MathJax صرف نظر کن
+              if (parent.classList && parent.classList.contains('MathJax')) {
+                return NodeFilter.FILTER_REJECT;
+              }
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        },
+        false
+      );
+      
+      var nodesToReplace = [];
+      var node;
+      while (node = walker.nextNode()) {
+        // فقط اگر متنی شامل عدد باشد
+        if (/\d/.test(node.textContent)) {
+          nodesToReplace.push(node);
+        }
+      }
+      
+      // اعداد را تبدیل کن
+      nodesToReplace.forEach(function(node) {
+        var converted = node.textContent.replace(/\d/g, function(d) {
+          return toPersianNumber(d);
+        });
+        if (converted !== node.textContent) {
+          node.textContent = converted;
+        }
+      });
+    }
+    
+    // ============================================
+    // اجرا بعد از بارگذاری کامل صفحه
+    // ============================================
+    function runConversion() {
+      var content = document.getElementById('note-content');
+      if (content) {
+        convertNumbersToPersian(content);
+      }
+    }
+    
+    // اجرا در شروع
+    if (document.readyState === 'complete') {
+      runConversion();
+    } else {
+      window.addEventListener('load', runConversion);
+    }
+    
+    // ============================================
+    // گوش دادن به تغییرات زبان
+    // ============================================
+    var observer = new MutationObserver(function() {
+      runConversion();
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-lang']
+    });
+    
+    // ============================================
+    // گوش دادن به تغییرات MathJax
+    // ============================================
+    if (window.MathJax) {
+      // بعد از رندر شدن MathJax، دوباره اجرا کن
+      var originalTypeset = MathJax.typesetPromise;
+      if (originalTypeset) {
+        MathJax.typesetPromise = function() {
+          return originalTypeset.apply(this, arguments).then(function() {
+            setTimeout(runConversion, 100);
+            return arguments;
+          });
+        };
+      }
+    }
+    
+  })();
+</script>
+<!-- ============================================ -->
