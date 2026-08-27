@@ -6,10 +6,10 @@ layout: default
     <span class="lang-en">🖥️ Slide mode</span>
     <span class="lang-fa">🖥️ حالت اسلایدی</span>
   </button>
-  <button type="button" id="print-btn" class="slide-toggle">
-    <span class="lang-en">🖨️ Print / PDF</span>
-    <span class="lang-fa">🖨️ پرینت / PDF</span>
-  </button>
+<button type="button" id="print-btn" class="slide-toggle" onclick="window.print()">
+  <span class="lang-en">🖨️ Print / PDF</span>
+  <span class="lang-fa">🖨️ پرینت / PDF</span>
+</button>
 </div>
 
 <article dir="{% if page.lang == 'fa' %}rtl{% else %}ltr{% endif %}" lang="{{ page.lang | default: 'en' }}"
