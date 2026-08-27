@@ -65,7 +65,7 @@ src="{{ '/assets/images/cover.svg' | relative_url }}"
 ```
 src="{{ '/assets/images/cover.jpg' | relative_url }}"
 ```
-
+```
 <!-- ============================================ -->
 <!-- باکس Note (یادداشت)                         -->
 <!-- ============================================ -->
@@ -126,6 +126,7 @@ src="{{ '/assets/images/cover.jpg' | relative_url }}"
   این روش بهترین نتیجه را دارد.
 </div>
 
+```
 
 ## نکات
 
