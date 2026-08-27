@@ -219,3 +219,111 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   .slides-container{ display:block !important; }
   .slide{ display:block !important; padding:0; page-break-after: always; }
 }
+
+/* ============================================ */
+/* سایدبار در موبایل - بسته به صورت پیش‌فرض     */
+/* ============================================ */
+
+/* دکمه همبرگری برای باز و بسته کردن سایدبار */
+.sidebar-toggle {
+  display: none;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1.5rem;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  line-height: 1;
+}
+
+/* استایل سایدبار */
+.sidebar {
+  width: 270px;
+  flex-shrink: 0;
+  background: var(--panel);
+  padding: 1.2rem;
+  overflow-y: auto;
+  transition: transform 0.3s ease, margin 0.3s ease;
+}
+
+/* حالت موبایل */
+@media (max-width: 800px) {
+  .sidebar-toggle {
+    display: inline-block;
+  }
+  
+  .layout {
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 1000;
+    transform: translateX(-110%);
+    margin: 0;
+    border-right: 1px solid var(--border);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    padding-top: 3.5rem;
+  }
+  
+  /* وقتی سایدبار باز است */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  /* اوورلی برای بستن سایدبار با کلیک بیرون */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+  }
+  
+  /* محتوای اصلی در موبایل */
+  main {
+    padding: 1rem 1.2rem;
+    width: 100%;
+  }
+  
+  /* دکمه بستن در سایدبار */
+  .sidebar-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .sidebar-close:hover {
+    color: var(--text);
+  }
+}
+
+/* برای صفحه‌های خیلی کوچک */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 85%;
+  }
+}
+
+/* ============================================ */
