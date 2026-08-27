@@ -3,7 +3,6 @@ title: "۰۱ - مقدمه‌ای بر LLM"
 lang: fa
 slug: intro
 order: 1
-date: 2026-08-27
 ---
 
 ## مدل‌های زبانی بزرگ چیستند؟
