@@ -27,8 +27,12 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    // اعمال تنظیمات ذخیره شده
+    applyLang(currentLang());
+    applyTheme(currentTheme());
     updateButtons();
 
+    // دکمه‌های زبان
     document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var lang = btn.getAttribute('data-lang-btn');
@@ -38,6 +42,7 @@
       });
     });
 
+    // دکمه تم
     var themeBtn = document.querySelector('[data-theme-btn]');
     if (themeBtn) {
       themeBtn.addEventListener('click', function () {
@@ -48,7 +53,8 @@
       });
     }
 
-    var printBtn = document.getElementById('print-btn');
+    // دکمه پرینت - با استفاده از querySelector
+    var printBtn = document.querySelector('[data-print-btn]'); // تغییر از getElementById به querySelector
     if (printBtn) {
       printBtn.addEventListener('click', function () {
         var slideBtn = document.getElementById('slide-mode-btn');
@@ -59,6 +65,8 @@
           window.print();
         }
       });
+    } else {
+      console.log('دکمه پرینت پیدا نشد!');
     }
   });
 })();
