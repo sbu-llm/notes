@@ -61,12 +61,7 @@
       <button type="button" class="sidebar-close" id="sidebar-close">✕</button>
       
       <!-- ============================================ -->
-      <!-- نوار جستجو در سایدبار                       -->
-      <!-- ============================================ -->
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="جستجو..." class="search-input">
-        <div id="search-results" class="search-results"></div>
-      </div>
+      <!-- بخش جستجو حذف شد                           -->
       <!-- ============================================ -->
       
       <h2 class="sidebar-title">
@@ -179,111 +174,6 @@
           closeSidebar();
         }
       });
-      
-      // ============================================
-      // جستجوی پیشرفته
-      // ============================================
-      var searchInput = document.getElementById('search-input');
-      var searchResults = document.getElementById('search-results');
-      
-      // جمع‌آوری داده‌های همه نوت‌ها از سایدبار
-      var allNotesData = [];
-      var allLinksInSidebar = document.querySelectorAll('.sidebar a');
-      
-      allLinksInSidebar.forEach(function(link) {
-        var href = link.getAttribute('href');
-        var title = link.textContent.trim();
-        var parentLi = link.closest('li');
-        var lang = parentLi ? (parentLi.className.includes('lang-en') ? 'en' : 'fa') : 'fa';
-        var partTitle = link.closest('.part-group') ? 
-                        link.closest('.part-group').querySelector('.part-title') : null;
-        var part = partTitle ? partTitle.textContent.trim() : '';
-        
-        allNotesData.push({
-          url: href,
-          title: title,
-          lang: lang,
-          part: part
-        });
-      });
-      
-      // جستجو
-      function performSearch(query) {
-        query = query.toLowerCase().trim();
-        var results = [];
-        
-        if (query.length < 2) {
-          searchResults.classList.remove('active');
-          return;
-        }
-        
-        allNotesData.forEach(function(item) {
-          var titleMatch = item.title.toLowerCase().includes(query);
-          var partMatch = item.part.toLowerCase().includes(query);
-          
-          if (titleMatch || partMatch) {
-            results.push(item);
-          }
-        });
-        
-        displayResults(results, query);
-      }
-      
-      function displayResults(results, query) {
-        if (results.length === 0) {
-          searchResults.innerHTML = '<div class="search-no-result">' + 
-            (document.documentElement.getAttribute('data-lang') === 'fa' ? 
-              'نتیجه‌ای یافت نشد' : 'No results found') + 
-            '</div>';
-          searchResults.classList.add('active');
-          return;
-        }
-        
-        var html = '';
-        results.forEach(function(item) {
-          // هایلایت کلمه کلیدی
-          var title = item.title;
-          var regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-          var highlightedTitle = title.replace(regex, '<span class="search-highlight">$1</span>');
-          
-          html += '<a href="' + item.url + '" class="search-result-item">';
-          html += '<span class="search-result-title">' + highlightedTitle + '</span>';
-          if (item.part) {
-            html += '<span class="search-result-part">' + item.part + '</span>';
-          }
-          html += '</a>';
-        });
-        
-        searchResults.innerHTML = html;
-        searchResults.classList.add('active');
-      }
-      
-      // رویدادهای جستجو
-      if (searchInput) {
-        searchInput.addEventListener('input', function() {
-          performSearch(this.value);
-        });
-        
-        searchInput.addEventListener('focus', function() {
-          if (this.value.length >= 2) {
-            performSearch(this.value);
-          }
-        });
-        
-        searchInput.addEventListener('blur', function() {
-          setTimeout(function() {
-            searchResults.classList.remove('active');
-          }, 200);
-        });
-        
-        // کلید ESC برای بستن نتایج
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            searchResults.classList.remove('active');
-            searchInput.blur();
-          }
-        });
-      }
       
       // ============================================
       // حالت مطالعه (Reader Mode)
