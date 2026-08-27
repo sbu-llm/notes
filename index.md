@@ -14,10 +14,9 @@ title: خانه
 
 ## <span class="heading-purple"> مدرسین:</span>
 
+<span class="tag-orange">دکتر سعید رضا خردپیشه</span>
+<span class="tag-red">میلاد وزان</span>
 
-دکتر سعیدرضا خردپیشه
-
-میلاد وزان
 
 
 
