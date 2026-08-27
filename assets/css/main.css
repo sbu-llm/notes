@@ -642,3 +642,361 @@ html[data-lang="fa"] .callout-success {
     font-size: 1.2rem;
   }
 }
+
+
+/* ============================================ */
+/* کلاس‌های رنگی برای جملات و عنوان‌ها          */
+/* ============================================ */
+
+/* ---- رنگ‌های متن ---- */
+.text-blue {
+  color: #3b82f6 !important;
+}
+
+.text-red {
+  color: #ef4444 !important;
+}
+
+.text-green {
+  color: #22c55e !important;
+}
+
+.text-purple {
+  color: #8b5cf6 !important;
+}
+
+.text-orange {
+  color: #f97316 !important;
+}
+
+.text-pink {
+  color: #ec4899 !important;
+}
+
+.text-yellow {
+  color: #eab308 !important;
+}
+
+.text-teal {
+  color: #14b8a6 !important;
+}
+
+.text-gray {
+  color: #6b7280 !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+/* ---- پس‌زمینه‌های رنگی (هایلایت) ---- */
+.hl-blue {
+  background: rgba(59, 130, 246, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-red {
+  background: rgba(239, 68, 68, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-green {
+  background: rgba(34, 197, 94, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-purple {
+  background: rgba(139, 92, 246, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-orange {
+  background: rgba(249, 115, 22, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-pink {
+  background: rgba(236, 72, 153, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-yellow {
+  background: rgba(234, 179, 8, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.hl-teal {
+  background: rgba(20, 184, 166, 0.2) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+/* ---- عنوان‌های رنگی ---- */
+.heading-blue {
+  color: #3b82f6 !important;
+  border-bottom: 3px solid #3b82f6 !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-red {
+  color: #ef4444 !important;
+  border-bottom: 3px solid #ef4444 !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-green {
+  color: #22c55e !important;
+  border-bottom: 3px solid #22c55e !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-purple {
+  color: #8b5cf6 !important;
+  border-bottom: 3px solid #8b5cf6 !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-orange {
+  color: #f97316 !important;
+  border-bottom: 3px solid #f97316 !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-pink {
+  color: #ec4899 !important;
+  border-bottom: 3px solid #ec4899 !important;
+  padding-bottom: 0.3em;
+}
+
+.heading-teal {
+  color: #14b8a6 !important;
+  border-bottom: 3px solid #14b8a6 !important;
+  padding-bottom: 0.3em;
+}
+
+/* ---- باکس‌های رنگی برای متن ---- */
+.box-blue {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border: 2px solid #3b82f6 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-red {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border: 2px solid #ef4444 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-green {
+  background: rgba(34, 197, 94, 0.1) !important;
+  border: 2px solid #22c55e !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-purple {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border: 2px solid #8b5cf6 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-orange {
+  background: rgba(249, 115, 22, 0.1) !important;
+  border: 2px solid #f97316 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-pink {
+  background: rgba(236, 72, 153, 0.1) !important;
+  border: 2px solid #ec4899 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-teal {
+  background: rgba(20, 184, 166, 0.1) !important;
+  border: 2px solid #14b8a6 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+.box-yellow {
+  background: rgba(234, 179, 8, 0.1) !important;
+  border: 2px solid #eab308 !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  margin: 0.8rem 0 !important;
+}
+
+/* ---- دکمه‌های رنگی ---- */
+.btn-blue {
+  background: #3b82f6 !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-blue:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+.btn-red {
+  background: #ef4444 !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-red:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+.btn-green {
+  background: #22c55e !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-green:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+.btn-purple {
+  background: #8b5cf6 !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-purple:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+.btn-orange {
+  background: #f97316 !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-orange:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+.btn-pink {
+  background: #ec4899 !important;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+}
+
+.btn-pink:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
+
+/* ---- برچسب‌های رنگی (Tag/Badge) ---- */
+.tag-blue {
+  background: #3b82f6 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-red {
+  background: #ef4444 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-green {
+  background: #22c55e !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-purple {
+  background: #8b5cf6 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-orange {
+  background: #f97316 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-pink {
+  background: #ec4899 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
+
+.tag-teal {
+  background: #14b8a6 !important;
+  color: #fff !important;
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-block !important;
+}
