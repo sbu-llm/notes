@@ -222,7 +222,6 @@ body.slide-mode-on main{ padding:0; max-width:none; }
 
 
 
-
 /* ============================================ */
 /* سایدبار در دسکتاپ - همیشه باز                */
 /* ============================================ */
@@ -232,6 +231,7 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   background: var(--panel);
   padding: 1.2rem;
   overflow-y: auto;
+  transition: transform 0.3s ease, right 0.3s ease, left 0.3s ease;
 }
 
 /* دکمه همبرگری - در دسکتاپ مخفی */
@@ -275,13 +275,12 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   .sidebar {
     position: fixed !important;
     top: 0 !important;
-    left: 0 !important;
     bottom: 0 !important;
     width: 280px !important;
     z-index: 1000 !important;
-    transform: translateX(-110%) !important;
     margin: 0 !important;
     border-right: 1px solid var(--border);
+    border-left: none;
     box-shadow: 2px 0 10px rgba(0,0,0,0.2);
     transition: transform 0.3s ease !important;
     padding-top: 3.5rem !important;
@@ -290,8 +289,31 @@ body.slide-mode-on main{ padding:0; max-width:none; }
     display: block !important;
   }
   
-  /* وقتی سایدبار باز است */
-  .sidebar.open {
+  /* حالت چپ‌چین (انگلیسی) - سایدبار در چپ */
+  html[data-lang="en"] .sidebar {
+    left: 0 !important;
+    right: auto !important;
+    transform: translateX(-110%) !important;
+    border-right: 1px solid var(--border);
+    border-left: none;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  }
+  
+  html[data-lang="en"] .sidebar.open {
+    transform: translateX(0) !important;
+  }
+  
+  /* حالت راست‌چین (فارسی) - سایدبار در راست */
+  html[data-lang="fa"] .sidebar {
+    left: auto !important;
+    right: 0 !important;
+    transform: translateX(110%) !important;
+    border-left: 1px solid var(--border);
+    border-right: none;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  }
+  
+  html[data-lang="fa"] .sidebar.open {
     transform: translateX(0) !important;
   }
   
@@ -300,14 +322,25 @@ body.slide-mode-on main{ padding:0; max-width:none; }
     display: block !important;
     position: absolute;
     top: 0.7rem;
-    right: 0.7rem;
+    padding: 0.3rem 0.6rem;
     background: none;
     border: none;
     font-size: 1.5rem;
     color: var(--muted);
     cursor: pointer;
-    padding: 0.3rem 0.6rem;
     z-index: 1001;
+  }
+  
+  /* دکمه بستن در حالت انگلیسی (چپ) */
+  html[data-lang="en"] .sidebar-close {
+    right: 0.7rem;
+    left: auto;
+  }
+  
+  /* دکمه بستن در حالت فارسی (راست) */
+  html[data-lang="fa"] .sidebar-close {
+    left: 0.7rem;
+    right: auto;
   }
   
   .sidebar-close:hover {
