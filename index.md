@@ -32,7 +32,7 @@ title: خانه
 ### <span class="hl-green">(Large Language Model Engineering)</span> 
 
 <div class="box-purple">
-  First Semester 2026-2027, Faculty of Mathematics, Shahid Beheshti University
+  2026-2027, Faculty of Mathematics, Shahid Beheshti University
 </div>
 
 
