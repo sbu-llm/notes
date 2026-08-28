@@ -12,51 +12,22 @@
     var counterEl = null;
 
     function splitIntoGroups() {
-      // Clone the content to work with
       var temp = document.createElement('div');
       temp.innerHTML = originalHTML;
-      
-      // Get all child nodes (including text nodes)
-      var childNodes = Array.prototype.slice.call(temp.childNodes);
+      var children = Array.prototype.slice.call(temp.children);
       var groups = [];
       var current = [];
-      var pendingText = '';
-      
-      childNodes.forEach(function (node) {
-        // Handle text nodes
-        if (node.nodeType === Node.TEXT_NODE) {
-          var text = node.textContent.trim();
-          if (text) {
-            // Create a paragraph for text nodes
-            var p = document.createElement('p');
-            p.textContent = text;
-            current.push(p);
-          }
-          return;
-        }
-        
-        // Handle element nodes
+      children.forEach(function (node) {
         var tag = node.tagName ? node.tagName.toLowerCase() : '';
-        
-        // Check if this is a heading or horizontal rule (slide separator)
         if ((tag === 'h2' || tag === 'hr') && current.length) {
           groups.push(current);
           current = [];
           if (tag === 'hr') return;
         }
-        
-        // Add the element to current group
-        current.push(node.cloneNode(true));
+        current.push(node);
       });
-      
-      // Don't forget the last group
       if (current.length) groups.push(current);
-      
-      // If no groups were created, create one with all content
-      if (!groups.length) {
-        groups = [childNodes.map(function(node) { return node.cloneNode(true); })];
-      }
-      
+      if (!groups.length) groups = [children];
       return groups;
     }
 
@@ -69,9 +40,12 @@
       });
       if (counterEl) counterEl.textContent = (i + 1) + ' / ' + slideCount;
       
-      // Process MathJax formulas in the new slide
+      // ============================================
+      // پردازش مجدد فرمول‌های MathJax در اسلاید جدید
+      // ============================================
       if (window.MathJax && window.MathJax.typesetPromise) {
         try {
+          // فقط اسلاید فعلی را پردازش کن
           var currentSlide = slides[i];
           MathJax.typesetPromise([currentSlide]).catch(function(err) {
             console.warn('MathJax error:', err);
@@ -80,6 +54,7 @@
           console.warn('MathJax typeset failed:', e);
         }
       }
+      // ============================================
     }
 
     function enterSlideMode() {
@@ -129,8 +104,11 @@
 
       document.addEventListener('keydown', onKeydown);
       
-      // Go to first slide and process MathJax
+      // ============================================
+      // پردازش فرمول‌های MathJax در اسلاید اول
+      // ============================================
       goTo(0);
+      // یک بار دیگر برای اطمینان از پردازش کامل
       setTimeout(function() {
         if (window.MathJax && window.MathJax.typesetPromise) {
           MathJax.typesetPromise([container]).catch(function(err) {
@@ -138,6 +116,7 @@
           });
         }
       }, 100);
+      // ============================================
     }
 
     function onKeydown(e) {
@@ -163,11 +142,15 @@
       container = null;
       counterEl = null;
       
+      // ============================================
+      // پردازش مجدد فرمول‌ها بعد از خروج از حالت اسلاید
+      // ============================================
       if (window.MathJax && window.MathJax.typesetPromise) {
         MathJax.typesetPromise().catch(function(err) {
           console.warn('MathJax exit typeset failed:', err);
         });
       }
+      // ============================================
     }
 
     btn.addEventListener('click', function () {
