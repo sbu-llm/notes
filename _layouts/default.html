@@ -116,15 +116,6 @@
   </button>
   <!-- ============================================ -->
 
-<!-- ============================================ -->
-<!-- کنترل‌های تنظیم سایز فونت در حالت خواندن     -->
-<!-- ============================================ -->
-<div id="reader-controls" style="display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--panel); padding: 10px 20px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; display: flex; gap: 15px; align-items: center; border: 1px solid var(--border);">
-  <button type="button" id="font-decrease" style="background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; padding: 5px 10px; font-weight: bold;">A-</button>
-  <span id="font-size-display" style="color: var(--muted); font-size: 14px; min-width: 40px; text-align: center;">100%</span>
-  <button type="button" id="font-increase" style="background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; padding: 5px 10px; font-weight: bold;">A+</button>
-  <button type="button" id="font-reset" style="background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; padding: 5px 10px;">⟲</button>
-</div>
 
   
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
@@ -226,92 +217,7 @@
       }
 
 
-// ============================================
-// کنترل سایز فونت در حالت خواندن
-// ============================================
-var readerControls = document.getElementById('reader-controls');
-var fontIncrease = document.getElementById('font-increase');
-var fontDecrease = document.getElementById('font-decrease');
-var fontReset = document.getElementById('font-reset');
-var fontSizeDisplay = document.getElementById('font-size-display');
 
-var currentFontSize = parseInt(localStorage.getItem('reader-font-size')) || 100;
-
-function applyFontSize(size) {
-  currentFontSize = Math.min(Math.max(size, 70), 150);
-  document.documentElement.style.setProperty('--reader-font-size', currentFontSize + '%');
-  localStorage.setItem('reader-font-size', currentFontSize);
-  if (fontSizeDisplay) {
-    fontSizeDisplay.textContent = currentFontSize + '%';
-  }
-}
-
-function toggleReaderControls(show) {
-  if (readerControls) {
-    readerControls.style.display = show ? 'flex' : 'none';
-  }
-}
-
-// اعمال سایز فونت ذخیره شده
-applyFontSize(currentFontSize);
-
-// اصلاح event listener دکمه reader mode
-if (readerBtn) {
-  // حذف event listener قبلی و اضافه کردن جدید
-  var newReaderBtn = readerBtn.cloneNode(true);
-  readerBtn.parentNode.replaceChild(newReaderBtn, readerBtn);
-  
-  newReaderBtn.addEventListener('click', function() {
-    isReaderMode = !isReaderMode;
-    document.body.classList.toggle('reader-mode', isReaderMode);
-    newReaderBtn.classList.toggle('active', isReaderMode);
-    newReaderBtn.textContent = isReaderMode ? '✕' : '📖';
-    localStorage.setItem('reader-mode', isReaderMode ? 'true' : 'false');
-    
-    // نمایش/مخفی کردن کنترل‌های سایز فونت
-    toggleReaderControls(isReaderMode);
-    
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      setTimeout(function() {
-        MathJax.typesetPromise().catch(function(err) {
-          console.warn('MathJax typeset failed:', err);
-        });
-      }, 100);
-    }
-  });
-  
-  // بازیابی وضعیت
-  var savedReaderMode = localStorage.getItem('reader-mode');
-  if (savedReaderMode === 'true') {
-    isReaderMode = true;
-    document.body.classList.add('reader-mode');
-    newReaderBtn.classList.add('active');
-    newReaderBtn.textContent = '✕';
-    toggleReaderControls(true);
-  }
-}
-
-// دکمه افزایش فونت
-if (fontIncrease) {
-  fontIncrease.addEventListener('click', function() {
-    applyFontSize(currentFontSize + 5);
-  });
-}
-
-// دکمه کاهش فونت
-if (fontDecrease) {
-  fontDecrease.addEventListener('click', function() {
-    applyFontSize(currentFontSize - 5);
-  });
-}
-
-// دکمه بازنشانی (ریست)
-if (fontReset) {
-  fontReset.addEventListener('click', function() {
-    applyFontSize(100);
-  });
-}
-      
       // ============================================
       // تغییر زبان با هدایت به نسخه دیگر
       // ============================================
