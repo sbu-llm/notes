@@ -184,7 +184,7 @@ body.slide-mode-on main{ padding:0; max-width:none; }
   display:flex; flex-direction:column; justify-content:center; align-items:center;
   padding: 5vh 7vw; overflow-y:auto; text-align:center;
   transition: transform 0.35s ease;
-  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.2rem);
 }
 .slide h1, .slide h2{ font-size: clamp(1.6rem, 4vw, 3rem); margin-top:0; }
 .slide img{
