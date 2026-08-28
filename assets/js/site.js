@@ -86,10 +86,11 @@
       var FONT_SIZE_KEY = 'reader-font-size';
       
       // سایزهای مجاز (درصد)
-      var MIN_FONT = 60;
-      var MAX_FONT = 160;
-      var DEFAULT_FONT = 100;
-      var FONT_STEP = 10;
+       // سایزهای مجاز (درصد)
+      var MIN_FONT = 60;        // حداقل 60%
+      var MAX_FONT = 250;       // حداکثر 250%
+      var DEFAULT_FONT = 160;   // پیش‌فرض 160%
+      var FONT_STEP = 10;       // هر بار 10% تغییر
       
       // سایز فعلی
       var currentFontSize = parseInt(localStorage.getItem(FONT_SIZE_KEY)) || DEFAULT_FONT;
