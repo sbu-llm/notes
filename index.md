@@ -28,12 +28,19 @@ title: خانه
 
 <div class="chrome home-content" data-lang-content="en" markdown="1">
 
-# LLM Lecture Notes
+### <span class="text-orange">Expert Systems Course Notes</span> 
+### <span class="hl-green">(Large Language Model Engineering)</span> 
 
-Pick a lecture from the sidebar.
+<div class="box-purple">
+  First Semester 2026-2027, Faculty of Mathematics, Shahid Beheshti University
+</div>
 
-To add a new lecture, upload a `.md` file into the `_notes/` folder in GitHub — the page is generated automatically. The site defaults to Persian; if an English version is also uploaded with the same `slug`, it appears when the EN button is selected.
 
+
+## <span class="heading-purple"> Instructors:</span>
+
+<span class="tag-orange">Dr. Saeed Reza Kheradpisheh</span>
+<span class="tag-red">Milad Vazan</span>
 </div>
 
 
