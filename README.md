@@ -18,7 +18,7 @@
 4. زیر «Build and deployment»، **Source** را روی **Deploy from a branch** بگذار و شاخه‌ی `main` / پوشه‌ی `/ (root)` را انتخاب کن.
 5. چند دقیقه صبر کن؛ آدرس سایت: `https://USERNAME.github.io/REPO-NAME/`
 
-## اضافه‌کردن درس جدید (انگلیسی — پیش‌فرض)
+## اضافه‌کردن درس جدید
 
 فایل `.md` داخل `_notes/` با این هدر:
 
