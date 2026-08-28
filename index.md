@@ -28,7 +28,7 @@ title: خانه
 
 <div class="chrome home-content" data-lang-content="en" markdown="1">
 
-### <span class="text-orange">Expert Systems Course Notes</span> 
+### <span class="text-orange">Expert Systems Lecture Notes</span> 
 ### <span class="hl-green">(Large Language Model Engineering)</span> 
 
 <div class="box-purple">
