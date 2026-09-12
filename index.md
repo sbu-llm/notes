@@ -7,8 +7,7 @@ title: خانه
 
 <div class="chrome home-content" data-lang-content="fa" markdown="1">
 
-### <span class="text-orange">یادداشت‌های درس سیستم‌های خبره</span> 
-### <span class="hl-green">(مهندسی مدل‌های زبانی بزرگ)</span> 
+### <span class="hl-green">مهندسی مدل‌های زبانی بزرگ</span> 
 
 <div class="box-purple">
   نیم‌سال اول ۱۴۰۶-۱۴۰۵، دانشکده ریاضی، دانشگاه شهید بهشتی
@@ -28,8 +27,8 @@ title: خانه
 
 <div class="chrome home-content" data-lang-content="en" markdown="1">
 
-### <span class="text-orange">Expert Systems Lecture Notes</span> 
-### <span class="hl-green">(Large Language Model Engineering)</span> 
+ 
+### <span class="hl-green">Engineering for Large Language Models</span> 
 
 <div class="box-purple">
   2026-2027, Faculty of Mathematics, Shahid Beheshti University
