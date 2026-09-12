@@ -22,6 +22,9 @@ title: خانه
 
 
 
+<div class="box-purple">
+  <strong>نکته:</strong> مرجع اصلی این درس اسلایدهایی است که در کلاس ارائه می‌شود. این لکچرنوت‌ها توسط مدرس دوم، میلاد وزان، برای یادگیری بیشتر گردآوری و تهیه شده است.
+</div>
 
 </div>
 
@@ -40,6 +43,13 @@ title: خانه
 
 <span class="tag-orange">Dr. Saeed Reza Kheradpisheh</span>
 <span class="tag-red">Milad Vazan</span>
+
+
+
+<div class="box-purple">
+  <strong>Note:</strong> The primary reference for this course is the slides presented in class. These lecture notes have been compiled and prepared by the second instructor, Milad Vazan, for further learning.
+</div>
+
 </div>
 
 
