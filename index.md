@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: خانه
@@ -23,7 +24,17 @@ title: خانه
 
 
 <div class="box-purple">
-  <strong>نکته:</strong> مرجع اصلی این درس اسلایدهایی است که در کلاس ارائه می‌شود. این لکچرنوت‌ها توسط مدرس دوم، میلاد وزان، برای یادگیری بیشتر گردآوری و تهیه شده است.
+  <strong>نکته:</strong> مرجع اصلی این درس اسلایدهایی است که در کلاس ارائه می‌شود. این یادداشت‌های درسی توسط مدرس دوم، میلاد وزان، برای یادگیری و فهم بیشتر مطالب گردآوری و تهیه شده است.
+</div>
+
+
+
+## <span class="heading-purple"> اسلایدهای درس:</span>
+
+<div class="box-purple">
+  برای دسترسی به اسلایدهای ارائه‌شده در کلاس، روی لینک زیر کلیک کنید:
+  <br><br>
+  <a href="https://ci4051.bitmath.ir/lectures/" target="_blank">📚 مشاهده اسلایدهای درس</a>
 </div>
 
 </div>
@@ -48,6 +59,16 @@ title: خانه
 
 <div class="box-purple">
   <strong>Note:</strong> The primary reference for this course is the slides presented in class. These lecture notes have been compiled and prepared by the second instructor, Milad Vazan, for further learning.
+</div>
+
+
+
+## <span class="heading-purple"> Course Slides:</span>
+
+<div class="box-purple">
+  To access the slides presented in class, click the link below:
+  <br><br>
+  <a href="https://ci4051.bitmath.ir/lectures/" target="_blank">📚 View Course Slides</a>
 </div>
 
 </div>
